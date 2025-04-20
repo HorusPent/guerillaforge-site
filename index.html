@@ -19,6 +19,11 @@
             border-radius: 10px; /* Rounded corners */
             margin: 20px 0;      /* Space between sections */
         }
+        /* Center the PayPal button */
+        #donate-button-container {
+            text-align: center;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -37,7 +42,25 @@
         <div class="download-box">
             <h3>❤️ Support Us</h3>
             <p>Help us build more tools!</p>
-            <!-- PayPal Button Will Go Here Later -->
+            
+            <!-- PAYPAL BUTTON STARTS HERE -->
+            <div id="donate-button-container">
+                <div id="donate-button"></div>
+            </div>
+            <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+            <script>
+                PayPal.Donation.Button({
+                    env:'production',
+                    hosted_button_id:'F638CE88ZTGDA',
+                    image: {
+                        src:'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',
+                        alt:'Donate with PayPal button',
+                        title:'PayPal - The safer, easier way to pay online!',
+                    }
+                }).render('#donate-button');
+            </script>
+            <!-- PAYPAL BUTTON ENDS HERE -->
+            
         </div>
     </div>
 </body>

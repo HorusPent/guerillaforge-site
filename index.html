@@ -82,15 +82,19 @@
       <h3>📝 Tool Descriptions</h3>
       <dl>
         <dt><strong>GF Loader</strong></dt>
-        <dd>GF Loader automatically downloads all files from a webpage to a chosen folder with logging.</dd>
+        <dd>GF Loader automatically downloads all files from a webpage to a chosen folder. It scrapes links, filters file types, and handles bulk downloads with a clean interface and progress logging. Very useful for collecting large sets of ROMs and media data.</dd>
+
         <dt><strong>GF Grabber</strong></dt>
-        <dd>Allows downloading videos from web pages—it works on most sites and popular video platforms.</dd>
+        <dd>GF Grabber allows the user to download videos from web pages. Great for most popular video platforms.</dd>
+
         <dt><strong>GF Comparator</strong></dt>
-        <dd>Compare two directories and see which files match or differ, with a clean report.</dd>
+        <dd>GF Comparator enables the user to compare files between two chosen directories and generates a full inventory list. The user can see what files are similar and unique to each storage location with a clean interface—useful when comparing large data sets between drives.</dd>
+
         <dt><strong>GF Namer</strong></dt>
-        <dd>Bulk file renamer with find/replace, character limits, and preview before applying.</dd>
+        <dd>GF Namer is a bulk file renaming tool to speed up the process of renaming lots of files at an accelerated rate. You can limit characters, replace or remove words/characters in bulk, and much more—a great time‑saver for mass renaming tasks.</dd>
+
         <dt><strong>GF Zip</strong></dt>
-        <dd>Unzip multiple archives into individual subfolders named after each ZIP.</dd>
+        <dd>GF Zip is a simple tool for unzipping files with the option to create a subfolder per ZIP file named after the archive. This helps keep extracted contents organized, especially when handling many ZIPs at once.</dd>
       </dl>
     </div>
 
@@ -113,7 +117,7 @@
       </script>
       <div class="mt-3">
         <h4>🎁 Donor Benefits</h4>
-        <p>Donors get premium tools, early releases, and a ZIP‑password emailed after donating.</p>
+        <p>Donors receive access to premium versions of GF Tools along with early releases of new tools. Upon donating, you will be emailed a pass key to access password‑protected ZIP files on this page. This incentivizes support to help our mission of providing free tools for everyone. Donors are welcome to respond to that email with suggestions and inquiries—while free tools remain our focus, your support helps us grow!</p>
       </div>
     </div>
 
@@ -136,7 +140,7 @@
       <h3>📝 Premium Tool Descriptions</h3>
       <dl>
         <dt><strong>GF Toolbox</strong></dt>
-        <dd>Beta GUI that brings most GF Tools under one roof.</dd>
+        <dd>Beta version of a GUI that encapsulates almost all GF Tools in one place.</dd>
         <dt><strong>GF Zip Pro</strong></dt>
         <dd>Separate beta program that improves on GF Zip with a polished GUI and extra features.</dd>
         <dt><strong>PentaGrabber</strong></dt>
@@ -173,19 +177,16 @@
     let drops = Array(columns).fill(1);
 
     function draw() {
-      // fade out old frames
       ctx.fillStyle = 'rgba(26,26,26,0.05)';
       ctx.fillRect(0, 0, w, h);
 
-      ctx.fillStyle = '#cc5500';            // burnt‑orange digits
+      ctx.fillStyle = '#cc5500';
       ctx.font = fontSize + 'px monospace';
 
       for (let i = 0; i < drops.length; i++) {
-        // generate a random digit 0–9
         const text = Math.floor(Math.random() * 10).toString();
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-        // reset drop to top once it passes bottom
         if (drops[i] * fontSize > h && Math.random() > 0.975) {
           drops[i] = 0;
         }

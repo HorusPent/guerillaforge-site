@@ -154,7 +154,7 @@
     </div>
   </div>
 
-  <!-- Matrix‑style code rain script -->
+  <!-- Matrix‑style code rain script (digits only) -->
   <script>
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
@@ -173,17 +173,19 @@
     let drops = Array(columns).fill(1);
 
     function draw() {
-      // translucent dark background to fade out old characters
+      // fade out old frames
       ctx.fillStyle = 'rgba(26,26,26,0.05)';
       ctx.fillRect(0, 0, w, h);
 
-      ctx.fillStyle = '#cc5500'; // burnt‑orange text
+      ctx.fillStyle = '#cc5500';            // burnt‑orange digits
       ctx.font = fontSize + 'px monospace';
 
       for (let i = 0; i < drops.length; i++) {
-        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        // generate a random digit 0–9
+        const text = Math.floor(Math.random() * 10).toString();
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
+        // reset drop to top once it passes bottom
         if (drops[i] * fontSize > h && Math.random() > 0.975) {
           drops[i] = 0;
         }

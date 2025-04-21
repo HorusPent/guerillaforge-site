@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,41 +10,36 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom CSS -->
   <style>
-    /* Prevent overscroll “bounce” showing the white/grey background */
-    html {
-      background: #1a1a1a;
-      overscroll-behavior: none;
-    }
-    body {
-      margin: 0;               /* remove default margins */
-      background: #1a1a1a;     /* match html background */
-      color: white;
-      padding: 20px;
-    }
-
     /* Full‑screen code rain behind everything */
     #matrix {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%; 
+      height: 100%;
       z-index: -1;
+      transform: translate3d(0, 0, 0); /* Enable hardware acceleration */
     }
 
-    /* Polished download‑box with burnt‑orange border & subtle shadow */
+    body {
+      background: #1a1a1a;
+      color: white;
+      padding: 20px;
+    }
     .download-box {
-      background: #2d2d2d;
+      background: rgba(45,45,45,0.85);
       padding: 20px;
       border-radius: 10px;
       margin: 20px 0;
       border: 1px solid #cc5500;
       box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
       transition: transform .2s, box-shadow .2s;
     }
     .download-box:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.8);
     }
-
     #donate-button-container {
       text-align: center;
       margin-top: 15px;
@@ -99,12 +94,16 @@
       <dl>
         <dt><strong>GF Loader</strong></dt>
         <dd>GF Loader automatically downloads all files from a webpage to a chosen folder. It scrapes links, filters file types, and handles bulk downloads with a clean interface and progress logging. Very useful for collecting large sets of ROMs and media data.</dd>
+
         <dt><strong>GF Grabber</strong></dt>
         <dd>GF Grabber allows the user to download videos from web pages. Great for most popular video platforms.</dd>
+
         <dt><strong>GF Comparator</strong></dt>
         <dd>GF Comparator enables the user to compare files between two chosen directories and generates a full inventory list. The user can see what files are similar and unique to each storage location with a clean interface—useful when comparing large data sets between drives.</dd>
+
         <dt><strong>GF Namer</strong></dt>
         <dd>GF Namer is a bulk file renaming tool to speed up the process of renaming lots of files at an accelerated rate. You can limit characters, replace or remove words/characters in bulk, and much more—a great time‑saver for mass renaming tasks.</dd>
+
         <dt><strong>GF Zip</strong></dt>
         <dd>GF Zip is a simple tool for unzipping files with the option to create a subfolder per ZIP file named after the archive. This helps keep extracted contents organized, especially when handling many ZIPs at once.</dd>
       </dl>
@@ -163,9 +162,12 @@
     <!-- Legal & Disclaimer -->
     <div class="download-box">
       <h4>⚠️ Legal / Disclaimer</h4>
-      <p>Use at your own risk. You are responsible for complying with all local laws and third-party terms of service when using these tools.</p>
-      <p>These tools are provided for personal use only. You must have the legal right to download any content. Neither Guerilla Forge nor its contributors endorse or condone copyright infringement.</p>
-      <p><strong>Privacy:</strong> We collect your email upon donation only to send you ZIP-file passwords and respond to your questions. We will never share your email with third parties.</p>
+      <p>Use at your own risk. You are responsible for complying with all local laws and third-party terms of
+      service when using these tools.</p>
+      <p>These tools are provided for personal use only. You must have the legal right to download any content.
+      Neither Guerilla Forge nor its contributors endorse or condone copyright infringement.</p>
+      <p><strong>Privacy:</strong> We collect your email upon donation only to send you ZIP-file passwords and
+      respond to your questions. We will never share your email with third parties.</p>
       <p><strong>Donations:</strong> Donations are voluntary and non-refundable.</p>
     </div>
   </div>
@@ -206,7 +208,7 @@
       }
     }
 
-    setInterval(draw, 50);
+    setInterval(draw, 100);  // Reduced interval for better performance
   </script>
 </body>
 </html>

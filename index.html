@@ -24,13 +24,12 @@
       padding: 20px;
     }
 
-    /* Updated .download-box with burnt orange border */
     .download-box {
       background: #2d2d2d;
       padding: 20px;
       border-radius: 10px;
       margin: 20px 0;
-      border: 2px solid #cc5500; /* Burnt orange border */
+      border: 2px solid #cc5500;
     }
 
     #donate-button-container {
@@ -51,17 +50,25 @@
       transform: scale(1.02);
     }
 
-    /* Footer styling */
     footer {
       text-align: center;
       margin-top: 40px;
       color: #777;
       font-size: 0.9rem;
     }
+
+    footer a {
+      color: #cc5500;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <!-- Canvas for code‑rain effect -->
+  <!-- Canvas for code rain effect -->
   <canvas id="matrix"></canvas>
 
   <div class="container">
@@ -78,16 +85,11 @@
       <h3>📦 Tools Download</h3>
       <p>Select a tool below to download:</p>
       <div class="d-grid gap-2">
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Loader.exe"
-           class="btn btn-burnt" download>GF Loader</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Grabber.zip"
-           class="btn btn-burnt" download>GF Grabber</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Comparator.exe"
-           class="btn btn-burnt" download>GF Comparator</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Namer.exe"
-           class="btn btn-burnt" download>GF Namer</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Zip.exe"
-           class="btn btn-burnt" download>GF Zip</a>
+        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Loader.exe" class="btn btn-burnt" download>GF Loader</a>
+        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Grabber.zip" class="btn btn-burnt" download>GF Grabber</a>
+        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Comparator.exe" class="btn btn-burnt" download>GF Comparator</a>
+        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Namer.exe" class="btn btn-burnt" download>GF Namer</a>
+        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Zip.exe" class="btn btn-burnt" download>GF Zip</a>
       </div>
     </div>
 
@@ -140,12 +142,9 @@
       <h3>🔒 Premium Downloads</h3>
       <p>Exclusive for donors—download your premium tools below:</p>
       <div class="d-grid gap-2">
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Toolbox.zip"
-           class="btn btn-burnt" download>GF Toolbox</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Zip.Pro.Beta.zip"
-           class="btn btn-burnt" download>GF Zip Pro</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/PentaGrabber.zip"
-           class="btn btn-burnt" download>PentaGrabber</a>
+        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Toolbox.zip" class="btn btn-burnt" download>GF Toolbox</a>
+        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Zip.Pro.Beta.zip" class="btn btn-burnt" download>GF Zip Pro</a>
+        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/PentaGrabber.zip" class="btn btn-burnt" download>PentaGrabber</a>
       </div>
     </div>
 
@@ -173,7 +172,10 @@
   </div>
 
   <!-- Footer -->
-  <footer>© Guerilla Forge 2025 – All rights reserved</footer>
+  <footer>
+    © Guerilla Forge 2025 – All rights reserved<br>
+    <a href="mailto:contact@guerillaforge.com">contact@guerillaforge.com</a>
+  </footer>
 
   <!-- Matrix‑style code rain script (digits only) -->
   <script>

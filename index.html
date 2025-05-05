@@ -115,27 +115,41 @@
     </div>
 
     <!-- Donation Section -->
-    <div class="download-box">
-      <h3>❤️ Support Us</h3>
-      <p>Help us build more tools!</p>
-      <div id="donate-button-container"><div id="donate-button"></div></div>
-      <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-      <script>
-        PayPal.Donation.Button({
-          env: 'production',
-          hosted_button_id: 'F638CE88ZTGDA',
-          image: {
-            src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',
-            alt: 'Donate with PayPal button',
-            title: 'PayPal - The safer, easier way to pay online!'
-          }
-        }).render('#donate-button');
-      </script>
-      <div class="mt-3">
-        <h4>🎁 Donor Benefits</h4>
-        <p>Donors receive access to premium versions of GF Tools along with early releases of new tools. Upon donating, you will be emailed a pass key to access password‑protected ZIP files on this page. This incentivizes support to help our mission of providing free tools for everyone. Donors are welcome to respond to that email with suggestions and inquiries—while free tools remain our focus, your support helps us grow!</p>
-      </div>
-    </div>
+<div class="download-box p-4">
+  <h3 class="mb-3">❤️ Support Us</h3>
+  <p class="mb-4">Help us build more tools!</p>
+  <div class="text-center mb-4">
+    <div id="donate-button"></div>
+  </div>
+  <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+  <script>
+    PayPal.Donation.Button({
+      env: 'production',
+      hosted_button_id: 'F638CE88ZTGDA',
+      image: {
+        src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',
+        alt: 'Donate with PayPal button',
+        title: 'PayPal - The safer, easier way to pay online!'
+      }
+    }).render('#donate-button');
+  </script>
+  <div class="mt-4">
+    <h4 class="mb-3">🎁 Donor Benefits</h4>
+    <p>Donors receive access to premium versions of GF Tools along with early releases of new tools. Upon donating, you will be emailed a pass key to access password‑protected ZIP files on this page. This incentivizes support to help our mission of providing free tools for everyone. Donors are welcome to respond to that email with suggestions and inquiries—while free tools remain our focus, your support helps us grow!</p>
+  </div>
+</div>
+
+  <div class="mt-4 text-start">
+    <h4>🎁 Donor Benefits</h4>
+    <p>
+      Donors receive access to premium versions of GF Tools along with early releases of new tools. 
+      Upon donating, you will be emailed a pass key to access password‑protected ZIP files on this page.
+      This incentivizes support to help our mission of providing free tools for everyone. 
+      Donors are welcome to respond to that email with suggestions and inquiries.
+    </p>
+    <p><em>While free tools remain our focus, your support helps us grow. 50% of all donations are used to help feed hungry children in the local community.</em></p>
+  </div>
+</div>
 
     <!-- Premium Section -->
     <div class="download-box">

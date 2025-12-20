@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You – Guerilla Forge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thank you for your inquiry. Guerilla Forge will review your workflow and follow up shortly.">
+  <style>
+    :root {
+      --bg: #050608;
+      --bg-alt: #101218;
+      --accent: #d96c2b; /* burnt orange */
+      --accent-soft: rgba(217, 108, 43, 0.12);
+      --text: #f5f5f5;
+      --muted: #a3a7b3;
+      --border: #252935;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #121520 0, #050608 45%, #050608 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(5, 6, 8, 0.9);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-full-logo {
+      height: 34px;
+      width: auto;
+      display: block;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thank-card {
+      max-width: 520px;
+      width: 100%;
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      padding: 1.75rem 1.75rem 1.6rem;
+      text-align: left;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    h1 {
+      margin: 0 0 0.75rem;
+      font-size: clamp(1.7rem, 2.2vw + 1rem, 2.1rem);
+    }
+
+    p {
+      margin: 0 0 0.7rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .detail {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    .btn-row {
+      margin-top: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      border-radius: 999px;
+      padding: 0.6rem 1.4rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      transition:
+        background 0.14s ease-out,
+        color 0.14s ease-out,
+        border-color 0.14s ease-out,
+        box-shadow 0.14s ease-out,
+        transform 0.14s ease-out;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      border: none;
+      background: var(--accent);
+      color: #050608;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+      filter: brightness(1.05);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    footer {
+      padding: 1.25rem 1.25rem 1.8rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #050608;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding-top: 2rem;
+      }
+      .thank-card {
+        padding: 1.5rem 1.25rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img src="GFLOGO.png" alt="Guerilla Forge" class="brand-full-logo">
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="thank-card">
+    <div class="eyebrow">Submission received</div>
+    <h1>Thanks for your inquiry.</h1>
+    <p>
+      Your workflow audit request has been sent to the Guerilla Forge inbox.
+      We’ll review what you shared and follow up with next steps if it’s a good fit.
+    </p>
+    <p class="detail">
+      Typical response time: within a few business days. If you need to share drawings,
+      screenshots, or additional details, you can reply directly to our follow-up email.
+    </p>
+
+    <div class="btn-row">
+      <a href="https://guerillaforge.com" class="btn-primary">Back to main site</a>
+      <a href="mailto:contact@guerillaforge.com" class="btn-outline">Email us directly</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>© <span id="year"></span> Guerilla Forge. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

@@ -2,226 +2,831 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Guerilla Forge - Free Tools & Software</title>
-  <!-- Favicon -->
-  <link rel="icon" href="GforgeL.ico" type="image/x-icon">
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
+  <title>Guerilla Forge – Engineering Workflow Automation</title>
+  <link rel="icon" type="image/x-icon" href="GforgeL.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guerilla Forge builds custom automation and tools for engineering teams – eliminating repetitive work, reducing errors, and accelerating project delivery.">
   <style>
-    /* Full‑screen code rain behind everything */
-    #matrix {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
+    :root {
+      --bg: #050608;
+      --bg-alt: #101218;
+      --accent: #d96c2b; /* burnt orange */
+      --accent-soft: rgba(217, 108, 43, 0.12);
+      --text: #f5f5f5;
+      --muted: #a3a7b3;
+      --border: #252935;
+      --danger: #f97373;
     }
+
+    * { box-sizing: border-box; }
 
     body {
-      background: #1a1a1a;
-      color: white;
-      padding: 20px;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #121520 0, #050608 45%, #050608 100%);
+      color: var(--text);
+      line-height: 1.6;
     }
 
-    .download-box {
-      background: #2d2d2d;
-      padding: 20px;
-      border-radius: 10px;
-      margin: 20px 0;
-      border: 2px solid #cc5500;
-    }
-
-    #donate-button-container {
-      text-align: center;
-      margin-top: 15px;
-    }
-
-    .btn-burnt {
-      background-color: #cc5500;
-      border-color: #cc5500;
-      color: #fff;
-      transition: transform .2s, box-shadow .2s;
-    }
-
-    .btn-burnt:hover {
-      background-color: #b04a00;
-      box-shadow: 0 0 8px rgba(204,85,0,0.6);
-      transform: scale(1.02);
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #777;
-      font-size: 0.9rem;
-    }
-
-    footer a {
-      color: #cc5500;
+    a {
+      color: var(--accent);
       text-decoration: none;
     }
 
-    footer a:hover {
-      text-decoration: underline;
+    a:hover { text-decoration: underline; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(5, 6, 8, 0.9);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* Full-name logo */
+    .brand-full-logo {
+      height: 34px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 2.5rem;
+      align-items: center;
+      padding: 2rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
+      margin: 0 0 1rem;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero-lede {
+      color: var(--muted);
+      max-width: 36rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.85rem;
+    }
+
+    .metric {
+      padding: 0.7rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      background: rgba(16, 18, 24, 0.9);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      border-radius: 999px;
+      padding: 0.65rem 1.4rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      transition:
+        background 0.14s ease-out,
+        color 0.14s ease-out,
+        border-color 0.14s ease-out,
+        box-shadow 0.14s ease-out,
+        transform 0.14s ease-out;
+    }
+
+    .btn-primary {
+      border: none;
+      background: var(--accent);
+      color: #050608;
+      font-weight: 600;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+      filter: brightness(1.05);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-footnote {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .hero-panel {
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top left, var(--accent-soft), #070810 55%, #050608 100%);
+      padding: 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    .hero-panel h2 {
+      font-size: 0.95rem;
+      margin: 0 0 0.75rem;
+    }
+
+    .hero-panel .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-panel .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #4ade80;
+    }
+
+    .hero-panel-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1rem;
+    }
+
+    .hero-panel-list li {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--muted);
+    }
+
+    .hero-panel-list li span { font-size: 1rem; }
+
+    .hero-panel-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .section {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header { margin-bottom: 1.75rem; }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .section h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.4rem;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 32rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* Force 5-wide layout in Services only on large screens */
+    @media (min-width: 1200px) {
+      #services .cards {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      border-radius: 0.9rem;
+      border: 1px solid var(--border);
+      padding: 1.1rem 1.1rem 1rem;
+      background: var(--bg-alt);
+      font-size: 0.85rem;
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, border-color 0.12s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+      border-color: var(--accent-soft);
+    }
+
+    .card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1rem;
+    }
+
+    .card-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .card ul {
+      padding-left: 1.1rem;
+      margin: 0.4rem 0 0;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.25rem;
+      font-size: 0.85rem;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem;
+      color: var(--accent);
+    }
+
+    .case-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 800px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .contact-card {
+      border-radius: 0.9rem;
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      padding: 1rem 1.1rem;
+      font-size: 0.85rem;
+    }
+
+    .contact-card label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-card input,
+    .contact-card textarea {
+      width: 100%;
+      border-radius: 0.55rem;
+      border: 1px solid var(--border);
+      background: #050608;
+      color: var(--text);
+      padding: 0.45rem 0.6rem;
+      font-size: 0.85rem;
+      font-family: inherit;
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-card textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    footer {
+      padding: 1.75rem 1.25rem 2.25rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #050608;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <!-- Canvas for code rain effect -->
-  <canvas id="matrix"></canvas>
 
-  <div class="container">
-    <h1 class="text-center">
-      <img src="https://raw.githubusercontent.com/HorusPent/guerillaforge-site/refs/heads/main/GforgeL.ico"
-           alt="Guerilla Forge Logo"
-           style="width:50px; height:50px; vertical-align:middle;">
-      Guerilla Forge
-    </h1>
-    <p class="text-center">Free tools for everyone!</p>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <!-- Full-name logo in header -->
+      <img src="GFLOGO.png" alt="Guerilla Forge" class="brand-full-logo">
+    </div>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#cases">Case Study</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Free Workflow Audit</a>
+    </nav>
+  </div>
+</header>
 
-    <!-- Download Section -->
-    <div class="download-box">
-      <h3>📦 Tools Download</h3>
-      <p>Select a tool below to download:</p>
-      <div class="d-grid gap-2">
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Loader.exe" class="btn btn-burnt" download>GF Loader</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Grabber.zip" class="btn btn-burnt" download>GF Grabber</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Comparator.exe" class="btn btn-burnt" download>GF Comparator</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Namer.exe" class="btn btn-burnt" download>GF Namer</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Zip.exe" class="btn btn-burnt" download>GF Zip</a>
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Custom Automation for Engineering Teams</div>
+      <h1>
+        We eliminate<br>
+        repetitive&nbsp;tasks<br>
+        so your engineers can <span>actually engineer.</span>
+      </h1>
+      <p class="hero-lede">
+        Guerilla Forge designs custom tools, AutoLISP, and companion apps that automate and improve
+        your unique workflows.
+      </p>
+
+      <div class="hero-metrics">
+        <div class="metric">
+          <strong>50–90%</strong>
+          Less time on repetitive tasks
+        </div>
+        <div class="metric">
+          <strong>Fewer Errors</strong>
+          Automated inputs mean cleaner results
+        </div>
+        <div class="metric">
+          <strong>Fast Turnaround</strong>
+          Get immediate results that our competitors can't match
+        </div>
+        <div class="metric">
+          <strong>Custom Fit</strong>
+          Tools designed around how <em>your</em> team actually works
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          Request Free Audit
+        </button>
+        <button class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+          View Services
+        </button>
+      </div>
+
+      <div class="hero-footnote">
+        No subscriptions. No bloatware. Just targeted automation and tools that quietly remove the worst parts of your day.
       </div>
     </div>
 
-    <!-- Tool Descriptions -->
-    <div class="download-box">
-      <h3>📝 Tool Descriptions</h3>
-      <dl>
-        <dt><strong>GF Loader</strong></dt>
-        <dd>GF Loader automatically downloads all files from a webpage to a chosen folder. It scrapes links, filters file types, and handles bulk downloads with a clean interface and progress logging. Very useful for collecting large sets of ROMs and media data.</dd>
+    <!-- HERO PANEL: AutoBOM live example -->
+    <aside class="hero-panel">
+      <div class="tag">
+        <span class="tag-dot"></span>
+        Live Example · AutoBOM Helper
+      </div>
+      <h2>Take a raw AutoCAD item query and turn it into a clean, optimized BOM based on your company standards.</h2>
+      <ul class="hero-panel-list">
+        <li><span>•</span> Reads full item queries directly from AutoCAD.</li>
+        <li><span>•</span> Translates to your internal part numbers using a fully customizable Key sheet.</li>
+        <li><span>•</span> Auto-optimizes desired materials into full size lengths for purchase.</li>
+        <li><span>•</span> Pastes into your existing Excel BOM format in mapped columns.</li>
+        <li><span>•</span> Includes setup suite to speed up your BOM key sheet creation and customization.</li>
+      </ul>
+      <div class="hero-panel-footer">
+        <div>Internal live tool · BOM automation</div>
+        <div class="badge">
+          <span>Built by Guerilla Forge</span>
+        </div>
+      </div>
+    </aside>
+  </section>
 
-        <dt><strong>GF Grabber</strong></dt>
-        <dd>GF Grabber allows the user to download videos from web pages. Great for most popular video platforms.</dd>
-
-        <dt><strong>GF Comparator</strong></dt>
-        <dd>GF Comparator enables the user to compare files between two chosen directories and generates a full inventory list. The user can see what files are similar and unique to each storage location with a clean interface. Useful when comparing large data sets between drives.</dd>
-
-        <dt><strong>GF Namer</strong></dt>
-        <dd>GF Namer is a bulk file renaming tool to speed up the process of renaming lots of files at an accelerated rate. You can limit characters, replace or remove words/characters in bulk, and much more. A great time‑saver for mass renaming tasks.</dd>
-
-        <dt><strong>GF Zip</strong></dt>
-        <dd>GF Zip is a simple tool for unzipping files with the option to create a subfolder per ZIP file named after the archive. This helps keep extracted contents organized, especially when handling many ZIPs at once.</dd>
-      </dl>
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Services</div>
+      <h2>What Guerilla Forge does for engineering teams</h2>
+      <p class="section-sub">
+        We don’t sell boxed software. We sit inside your reality, study how your team actually works,
+        and then build simple, user-friendly tools that remove the drag from your process.
+      </p>
     </div>
 
-    <!-- Donation Section -->
-<div class="download-box text-center">
-  <h3 class="mb-2">❤️ Support Us</h3>
-  <p>Help us build more tools!</p>
-  <div id="donate-button-container" class="my-3">
-    <div id="donate-button"></div>
-  </div>
-  <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-  <script>
-    PayPal.Donation.Button({
-      env: 'production',
-      hosted_button_id: 'F638CE88ZTGDA',
-      image: {
-        src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',
-        alt: 'Donate with PayPal button',
-        title: 'PayPal - The safer, easier way to pay online!'
-      }
-    }).render('#donate-button');
-  </script>
+    <div class="cards">
+      <article class="card">
+        <div class="card-tag">Core Service</div>
+        <h3>Custom CAD & Workflow Automation</h3>
+        <p>
+          We’ve solved complex workflow issues with a specialty in AutoLISP, Python, and UI automation that removes clicks, dialogs, and manual edits from your day.
+        </p>
+        <ul>
+          <li>Command-based tools inside AutoCAD</li>
+          <li>Dialog automation (factory objects, properties, etc.)</li>
+          <li>One-click routines for repetitive edits</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">AutoCAD</span>
+          <span class="pill">AutoLISP</span>
+          <span class="pill">Windows EXE tools</span>
+        </div>
+      </article>
 
-  <div class="mt-4 text-start">
-    <h4>🎁 Donor Benefits</h4>
-    <p>
-      Donors receive access to premium versions of GF Tools along with early releases of new tools. 
-      Upon donating, you will be emailed a pass key to access password‑protected ZIP files on this page.
-      This incentivizes support to help our mission of providing free tools for everyone. 
-      Donors are welcome to respond to that email with suggestions and inquiries.
+      <article class="card">
+        <div class="card-tag">Consulting</div>
+        <h3>Engineering Workflow Assessment</h3>
+        <p>
+          A structured review of how your team handles layouts, BOMs, and documentation – and where automation can make
+          the biggest difference.
+        </p>
+        <ul>
+          <li>Identify high-friction steps</li>
+          <li>Map current vs ideal workflows</li>
+          <li>Deliver concrete automation opportunities</li>
+          <li>Optional review of reality-capture workflows, including LiDAR, point clouds, and data management.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Free initial call</span>
+          <span class="pill">Actionable report</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-tag">Deliverables</div>
+        <h3>Tool Design & Implementation</h3>
+        <p>
+          From concept to a working command/button on your ribbon or toolbar – including documentation and clear instruction so your team actually uses it.
+        </p>
+        <ul>
+          <li>Custom EXEs and helper apps</li>
+          <li>Deployment folder structures</li>
+          <li>Training & simple user guides</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Targeted tools</span>
+          <span class="pill">Low-friction rollout</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-tag">Featured</div>
+        <h3>AutoBOM Translation & Excel Integration</h3>
+        <p>
+          We build BOM helpers that take raw AutoCAD queries and turn them into clean, standardized BOMs – mapped to your part numbers and Excel templates.
+        </p>
+        <ul>
+          <li>Translates queries into your internal part numbers</li>
+          <li>Optimizes necessary part numbers and materials into full size lengths to order</li>
+          <li>Pastes directly into your existing Excel BOM sheets</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">AutoCAD → Excel</span>
+          <span class="pill">Material length optimization</span>
+          <span class="pill">Key sheet driven logic</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-tag">Flagship Suite</div>
+        <h3>Systems Layout Accelerator (GF-SLA)</h3>
+        <p>
+          A complete AutoLISP and tooling suite that makes Systems Layout faster, more consistent, and easier to staff – so senior engineers can focus on design instead of repetitive setup and cleanup.
+        </p>
+        <ul>
+         <li>Standardized, company-specific layer nomenclature and controls.</li>
+         <li>One-command sheet setup for kit sheets, install sheets, and model views.</li>
+         <li>Dimension helpers and automated dimensioning systems, plus QA checks (dimscale, ordinates, rotated dims, etc.).</li>
+         <li>Automated callout extraction directly from drawings.</li>
+         <li>GF-SLA can be tuned to your standards so new team members can produce high-quality outputs quickly.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Process</div>
+      <h2>How an engagement with Guerilla Forge works</h2>
+      <p class="section-sub">
+        No over-the-top sales pitch. Just a simple, transparent path from annoying and repetitive tasks
+        to working automation.
+      </p>
+    </div>
+
+    <div class="process-steps">
+      <article class="card">
+        <div class="step-num">1</div>
+        <h3>Free workflow audit</h3>
+        <p>
+          We start with a short conversation and review of a real drawing, process, BOM, or workflow. The goal is to understand the
+          repetitive pieces that slow your team down.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="step-num">2</div>
+        <h3>Proposal & fixed quote</h3>
+        <p>
+          Based on your priorities, we outline proposed tools, expected time savings, and a fixed-cost project scope
+          with clear deliverables.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="step-num">3</div>
+        <h3>Build & iterate</h3>
+        <p>
+          We develop your automation, test it, and refine until it fits naturally into your
+          existing workflow.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="step-num">4</div>
+        <h3>Delivery & support</h3>
+        <p>
+          You get the tool, light documentation, and optional follow-up support as your team starts using it day-to-day.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- CASE STUDY -->
+  <section id="cases" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Sample Case</div>
+      <h2>Internal blowback automation for control cabinets</h2>
+      <p class="section-sub">
+        An example of how a small, targeted tool can quietly replace hours of tedious clicking.
+      </p>
+    </div>
+
+    <div class="cards">
+      <article class="card">
+        <h3>The problem</h3>
+        <p>
+          A systems layout team needed to adjust blowback color values for dozens of factory control cabinets across
+          multiple drawings. The only way to do it was:
+        </p>
+        <ul>
+          <li>Individually select each cabinet one-by-one</li>
+          <li>Right-click → modify factory object</li>
+          <li>Change a 0/1 value by hand</li>
+          <li>Repeat, over and over</li>
+        </ul>
+        <p class="case-meta">
+          Result: time-consuming, boring work with a high chance of missed devices or inconsistent values.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>The Guerilla Forge solution</h3>
+        <p>
+          We built a single AutoCAD command that:
+        </p>
+        <ul>
+          <li>Finds all relevant cabinets on specific layers</li>
+          <li>Automatically opens their modify dialogs, one by one</li>
+          <li>Hands control to a companion EXE that sets the correct blowback value</li>
+          <li>Returns “Done.” when every object is processed</li>
+        </ul>
+        <p class="case-meta">
+          <span class="highlight">Impact:</span> drastic reduction in manual effort, fewer missed cabinets, and a repeatable
+          workflow that can be run any time the design changes.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Contact</div>
+      <h2>Start with a free workflow audit</h2>
+    <p class="section-sub">
+      If your team spends hours every week doing the same steps in AutoCAD or Excel, there’s probably a better way.
+      Tell us what’s slowing you down, and we’ll tell you what’s realistically automatable.
     </p>
-  </div>
-</div>
+    </div>
 
-    <!-- Premium Section -->
-    <div class="download-box">
-      <h3>🔒 Premium Downloads</h3>
-      <p>Download your premium tools below:</p>
-      <div class="d-grid gap-2">
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Toolbox.zip" class="btn btn-burnt" download>GF Toolbox</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/GF.Zip.Pro.exe" class="btn btn-burnt" download>GF Zip Pro</a>
-        <a href="https://github.com/HorusPent/guerillaforge-site/releases/download/v1.0.2/PentaGrabber.zip" class="btn btn-burnt" download>PentaGrabber</a>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <!-- FormSubmit-powered form -->
+        <form id="contact-form" action="https://formsubmit.co/contact@guerillaforge.com" method="POST">
+          <!-- FormSubmit config -->
+          <input type="hidden" name="_subject" value="New workflow audit inquiry">
+          <input type="hidden" name="_next" value="https://guerillaforge.com/thanks.html">
+          <input type="hidden" name="_captcha" value="false">
+
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required>
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@company.com" required>
+
+          <label for="company">Company / Team</label>
+          <input id="company" name="company" type="text" placeholder="e.g. Systems Layout Group">
+
+          <label for="message">What would you like to automate?</label>
+          <textarea id="message" name="message" placeholder="Describe a real workflow, drawing, or repetitive task that slows your team down..." required></textarea>
+
+          <button type="submit" class="btn-primary">Send Inquiry</button>
+        </form>
+      </div>
+
+      <div class="contact-card">
+        <h3>What to expect</h3>
+        <p>
+          You won’t get a sales script. You’ll get a short, technical conversation about what you do today,
+          what you want to do faster, and whether automation can bridge that gap.
+        </p>
+        <p>
+          If it’s a fit, we’ll follow up with:
+        </p>
+        <ul>
+          <li>A short written summary of automation opportunities</li>
+          <li>Rough savings estimates (time, error reduction)</li>
+          <li>A clear next step only if it makes sense</li>
+        </ul>
+        <p style="margin-top:0.7rem;">
+          Prefer direct email? Reach out at:
+          <br><strong>contact@guerillaforge.com</strong>
+        </p>
       </div>
     </div>
+  </section>
+</main>
 
-    <!-- Premium Tool Descriptions -->
-    <div class="download-box">
-      <h3>📝 Premium Tool Descriptions</h3>
-      <dl>
-        <dt><strong>GF Toolbox</strong></dt>
-        <dd>Beta version of a GUI that encapsulates almost all GF Tools in one place.</dd>
-        <dt><strong>GF Zip Pro</strong></dt>
-        <dd>This beta release of GF Zip Pro builds on GF Zip by adding a refined GUI and additional functionality.</dd>
-        <dt><strong>PentaGrabber</strong></dt>
-        <dd>Original version of GF Grabber. Great for downloading web videos quickly.</dd>
-      </dl>
+<footer>
+  <div class="footer-inner">
+    <div>
+      © <span id="year"></span> Guerilla Forge. All rights reserved.
     </div>
-
-    <!-- Legal & Disclaimer -->
-    <div class="download-box">
-      <h4>⚠️ Legal / Disclaimer</h4>
-      <p>Use at your own risk. You are responsible for complying with all local laws and third-party terms of service when using these tools.</p>
-      <p>These tools are provided for personal use only. You must have the legal right to download any content. Neither Guerilla Forge nor its contributors endorse or condone copyright infringement.</p>
-      <p><strong>Privacy:</strong> Your email address is collected only upon donation to deliver exclusive ZIP-file passwords. It will never be shared with third parties.</p>
-      <p><strong>Donations:</strong> Donations are voluntary, non-refundable, and not tax-deductible.</p>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#cases">Case Study</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
+</footer>
 
-  <!-- Footer -->
-  <footer>
-    © Guerilla Forge 2025 – All rights reserved<br>
-    <span style="color: #cc5500;">contact@guerillaforge.com</span>
-  </footer>
+<script>
+  // Keep year current
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
-  <!-- Matrix‑style code rain script (digits only) -->
-  <script>
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      columns = Math.floor(w / fontSize);
-      drops = Array(columns).fill(1);
-    });
-
-    const fontSize = 16;
-    const columns = Math.floor(w / fontSize);
-    let drops = Array(columns).fill(1);
-
-    function draw() {
-      ctx.fillStyle = 'rgba(26,26,26,0.05)';
-      ctx.fillRect(0, 0, w, h);
-
-      ctx.fillStyle = '#cc5500';
-      ctx.font = fontSize + 'px monospace';
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = Math.floor(Math.random() * 10).toString();
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > h && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      }
-    }
-
-    setInterval(draw, 50);
-  </script>
 </body>
 </html>
